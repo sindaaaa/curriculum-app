@@ -19,5 +19,21 @@ pipeline {
       }
     }
 
+    stage('Log into Dockerhub') {
+      environment {
+        DOCKERHUB_USER = 'sindaaa'
+        DOCKERHUB_PASSWORD = 'Sinda94976046'
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
+      }
+    }
+
+    stage('Push') {
+      steps {
+        sh 'docker push sindaaa/curriculum-front:latest'
+      }
+    }
+
   }
 }
